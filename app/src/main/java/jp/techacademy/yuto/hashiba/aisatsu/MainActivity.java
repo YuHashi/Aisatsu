@@ -34,9 +34,38 @@ public class MainActivity extends AppCompatActivity  {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         Log.d("UI-PARTS", String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+
                         TextView mTextView;
                         mTextView = (TextView) findViewById(R.id.TextView01);
-                        mTextView.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+
+                        int i = Integer.parseInt(String.valueOf(hourOfDay));
+                        int flag=0;
+                        if ( 2<=i && i<=9){
+                            flag = 0;
+                            Log.d("UI-PARTS", flag + "_01");
+                        } else if ( 10<=i && i<=17){
+                            flag = 1;
+                            Log.d("UI-PARTS", flag + "_01");
+                        } else if ( 18<=i || i<=1){
+                            flag = 2;
+                            Log.d("UI-PARTS", flag + "_01");
+                        }
+
+                        switch (flag ){
+                            case 0:
+                                mTextView.setText("おはよう");
+                                Log.d("UI-PARTS", flag + "_02");
+                                break;
+                            case 1:
+                                mTextView.setText("こんにちは");
+                                Log.d("UI-PARTS", flag + "_02");
+                                break;
+                            case 2:
+                                mTextView.setText("こんばんは");
+                                Log.d("UI-PARTS", flag + "_02");
+                                break;
+                        }
+
                     }
                 },
                 13, // 初期値（時間）
